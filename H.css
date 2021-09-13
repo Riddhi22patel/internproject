@@ -1,0 +1,14 @@
+button{height:40px;
+		width:100px;
+		outline:none;
+		border-radius:30px;
+		border:0px;
+		cursor:pointer;
+		margin-left:280px;
+		margin-top:15px;
+		transition-property:all;
+		transition-duration:0.5s;}
+	
+button:hover{background-color:black;
+			color:white;}
+

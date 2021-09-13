@@ -1,0 +1,44 @@
+body{
+	/* background-color:rgb(227, 30, 37); */
+	background-image:url("bg13.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#loader {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	background: rgba(0, 0, 0,0.75) url(loading.gif) no-repeat center center;          
+	z-index: 10000;
+}
+.div1{margin-top:200px;
+	margin-left:10px;}
+	
+.div1 a{color:black;
+		text-decoration:none;
+		background-color:white;
+		display:block;
+		height:40px;
+		width:80px;
+		margin-top:10px;
+		margin-left:10px;
+		border-radius:20px;}
+.div1 a span{display:flex;
+			padding-top:10px;
+			margin-left:17px;
+			}
+.div1 a:hover{background-color:black;
+			color:white;}
+			
+
+.div1 select{border:none;
+			background-color:transparent;
+			margin-bottom:20px;
+			}
+
+.div1 select option{background-color:rgb(241, 113, 115);}

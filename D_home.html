@@ -1,0 +1,185 @@
+<html>
+
+<head>
+	<title>Home</title>
+</head>
+
+<body>
+	<html>
+
+	<head>
+		<title>Home</title>
+		<script src="https://kit.fontawesome.com/ea99c0e3b8.js" crossorigin="anonymous"></script>
+		<style>
+			body {
+				/* background-color: rgb(227, 30, 37); */
+				background-image: url(bg13.jpg);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			.container {
+				color: #ffa42e;
+			}
+
+			ul {
+				list-style-type: none;
+				margin: 0px;
+				padding: 25px;
+				overflow: hidden;
+				background-color: rgb(0, 0, 0);
+				width: 97.6%;
+
+				overflow: hidden;
+
+			}
+
+			li {
+				float: left;
+			}
+
+			li a {
+				display: block;
+				color: white;
+				text-align: center;
+				padding: 14px 16px;
+				text-decoration: none;
+			}
+
+			li a:hover {
+				background-color: white;
+				color: black;
+			}
+
+			h1 {
+				display: inline;
+				float: left;
+			}
+
+			#loader {
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				width: 100%;
+				background: rgba(0, 0, 0, 0.75) url(loading.gif) no-repeat center center;
+				z-index: 10000;
+			}
+
+			input {
+				background-color: white;
+				border: 0;
+				outline: 0;
+				border-radius: 25px;
+				transition-duration: 1s;
+			}
+
+			input:hover {
+				background-color: #ffa42e;
+				;
+				color: black;
+				cursor: pointer;
+			}
+
+			button:hover {
+				cursor: pointer;
+				background-color: black;
+				color: white;
+				transition-property: all;
+				transition-duration: 0.5s;
+			}
+		</style>
+	</head>
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<body>
+		<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-analytics.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-storage.js"></script>
+
+		<script>
+
+			var firebaseConfig = {
+				apiKey: "AIzaSyC8u4DXv-tnpGL4HIR4ImrFqvrS8hiKQ8Q",
+				authDomain: "javascript-2525.firebaseapp.com",
+				projectId: "javascript-2525",
+				storageBucket: "javascript-2525.appspot.com",
+				messagingSenderId: "308544058300",
+				appId: "1:308544058300:web:f1bd18ae63d13c99bdf1b9",
+				measurementId: "G-ZB18Y9E6E8"
+			};
+
+			firebase.initializeApp(firebaseConfig);
+		</script>
+		<div id="loader"></div>
+		<div style="margin-left:10px; margin-top:15px;">
+			<i class="fas fa-hospital-alt fa-3x"></i>
+		</div>
+		<h2 style="color:black; margin-top:-30px; margin-left:80px;" id="hname"></h2>
+		<br>
+
+		<ul style="margin-top:-10px; margin-left:-10px;">
+			<li><a href="#home">Home</a></li>
+			<li><a href="D_status.html">Hospital Status</a></li>
+			<li><a href="D_other_status.html">Other Hospital Status</a></li>
+			<li><a href="D_contactus.html">Contact Us</a></li>
+			<li><a href="D_history1.html">History</a></li>
+			<li><a href="#" onclick="logout()">Logout</a></li>
+			<li style="margin-left:1100px; margin-top:-60px;"><a href="D_profile.html"><img id="img" src="avatar.png"
+						height="40px" width="40px;" style="border-radius:30px;"></img></a></li>
+		</ul>
+		<br>
+		<h1 style="color:black; margin-top:100px; margin-left:30px;">Donate Blood To Save Life.</h1>
+		<p style="color:black;font-weight: bolder; margin-top:160px; margin-left:30px; font-size:20px;">Donate your blood for a reason, let
+			the reason to be life.</p>
+
+		<form action="D_status.html">
+			<button
+				style="margin-top:30px; margin-left:30px; border:none; outline:none; height:40px; width:150px; border-radius:20px;">Check
+				Blood Status</button>
+			<form>
+				<script>
+					var spinner = $("#loader")
+					spinner.show()
+					var hname = document.getElementById('hname')
+					firebase.firestore().collection("doctors").doc(localStorage.getItem('uid')).get().then((doc) => {
+						hname.innerHTML = doc.data().Hospital
+						spinner.hide()
+					})
+				</script>
+				<script>
+					window.onload = fun()
+					function fun() {
+						firebase.firestore().collection("doctors").doc(localStorage.getItem('uid')).get().then((doc) => {
+							if (doc.data().imageUrl == "") {
+								document.getElementById('img').setAttribute("src", "avatar.png")
+							}
+							else {
+								document.getElementById('img').setAttribute("src", doc.data().imageUrl)
+							}
+						})
+					}
+				</script>
+				<script>
+					function logout() {
+						firebase.auth()
+							.signOut()
+						console.log("logged out...");
+						localStorage.removeItem('uid')
+						window.location.href = "login.html"
+					}
+				</script>
+	</body>
+
+	</html>
+
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  font-family: "Lato", sans-serif;
+	background-image:url(bg.jpg);
+	background-size:cover;
+  }
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  text-align:center;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+
+}
+
+.sidenav a:hover{
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.H1{margin-right:1050px;
+	margin-top:150px;
+	color:white;}
+
+.H1 img{width:100px;
+		height:100px;
+		border-radius:100px;}
+
+
+.H2{margin-right:250px;
+	margin-top:-250px;
+	color:white;}
+
+.H2 img{width:100px;
+		height:100px;
+		border-radius:100px;}
+
+.H3{margin-right:-500px;
+	margin-top:-255px;
+	color:white;}
+
+.H3 img{width:100px;
+		height:100px;
+		border-radius:100px;}
+</style>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="H1">
+	<img src="A.jpg"></img>
+	<p>Name: Alex Carry</p>
+	<p style="margin-left:-10px;">Blood Group:A+</p>
+	<p style="margin-left:42px;">Donate Date:20/5/2019</p>
+	<p style="margin-left:65px;">Place:Smimer Blood Bank</p>
+
+  </div>
+  <div class="H2">
+	<img src="A.jpg"></img>
+	<p>Name: Alex Carry</p>
+	<p style="margin-left:-15px;">Blood Group:A+</p>
+	<p style="margin-left:29px;">Donate Date:5/8/2018</p>
+	<p style="margin-left:105px;">Place:Lok Samarpan Blood Bank</p>
+	
+  </div>
+  
+  <div class="H3">
+	<img src="A.jpg"></img>
+	<p>Name: Alex Carry</p>
+	<p style="margin-left:-15px;">Blood Group:A+</p>
+	<p style="margin-left:25px;">Donate Date:1/1/2018</p>
+	<p style="margin-left:130px;">Place:New Civil Hospital Blood Bank</p>
+	
+  </div>
+</div>
+
+<h2>History</h2>
+<p>Click on the element below to open your history</p>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "100%";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+   
+</body>
+</html> 
+

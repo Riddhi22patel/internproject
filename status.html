@@ -1,0 +1,172 @@
+<html>
+
+<head>
+	<title>Status</title>
+	<link rel="stylesheet" href="status.css">
+
+	<head>
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<body>
+		<form>
+			<div class="div1">
+				<p style="font-size:20px;">Please select below option to check status of blood in different hospitals
+				</p>
+				<label style="font-size:16px;">Select Hospital :</label>
+				<select id="item1" name="Selection2" size="1" style="font-size:15px;">
+					<option></option>
+					<option value="H1">Smimer Hospital Blood Bank</option>
+					<option value="H2">Lok Samarpan Blood Bank</option>
+					<option value="H3">New Civil Hospital Blood Bank</option>
+					<option value="H4">Kiran Super Multispeciality Hospital</option>
+					<option value="H5">Surat Health Care Foundation Blood Bank</option>
+				</select>
+				<br>
+				<a href="#" onclick="message()"><span>Check</span></a>
+		</form>
+		</div>
+		<div id="loader"></div>
+		<div class="div2">
+			<script>
+
+				function message() {
+					
+					var s = document.getElementById('item1');
+
+					sessionStorage.setItem('hospital', s.value)
+					// location.reload()
+					// setTimeout(display,2000)
+					var spinner = $('#loader')
+					spinner.show()
+					if (s.value=="H1") {
+					var ifrm = document.createElement("iframe");
+					    ifrm.setAttribute("src", "D_H6.html");
+					    ifrm.style.width = "640px";
+					    ifrm.style.height = "480px";
+					    document.body.appendChild(ifrm);
+						ifrm.style.marginLeft = "630px";
+						ifrm.style.marginTop = "-200px";
+						ifrm.style.border="none";
+
+					}
+					else if(s.value=="H2"){
+					var ifrm = document.createElement("iframe");
+					    ifrm.setAttribute("src", "D_H2.html");
+					    ifrm.style.width = "640px";
+					    ifrm.style.height = "480px";
+					    document.body.appendChild(ifrm);
+						ifrm.style.marginLeft = "630px";
+						ifrm.style.marginTop = "-190px";
+						ifrm.style.border="none";
+
+					} 
+					else if(s.value=="H3"){
+					var ifrm = document.createElement("iframe");
+					    ifrm.setAttribute("src", "D_H3.html");
+					    ifrm.style.width = "640px";
+					    ifrm.style.height = "480px";
+					    document.body.appendChild(ifrm);
+						ifrm.style.marginLeft = "630px";
+						ifrm.style.marginTop = "-190px";
+						ifrm.style.border="none";
+						}
+					else if(s.value=="H4"){
+					var ifrm = document.createElement("iframe");
+					    ifrm.setAttribute("src", "D_H4.html");
+					    ifrm.style.width = "640px";
+					    ifrm.style.height = "480px";
+					    document.body.appendChild(ifrm);
+						ifrm.style.marginLeft = "630px";
+						ifrm.style.marginTop = "-190px";
+						ifrm.style.border="none";
+						}
+					else if(s.value=="H5"){
+					var ifrm = document.createElement("iframe");
+					    ifrm.setAttribute("src", "D_H5.html");
+					    ifrm.style.width = "640px";
+					    ifrm.style.height = "480px";
+					    document.body.appendChild(ifrm);
+						ifrm.style.marginLeft = "630px";
+						ifrm.style.marginTop = "-190px";
+						ifrm.style.border="none";
+						}
+					else{
+						spinner.hide(100,function(){
+							alert("Please Select Hospital")
+						})
+					}
+					function load() {
+						spinner.hide()
+					}
+					setTimeout(load,2200)
+				}
+			</script>
+			<!-- <script>
+				var spinner = $('#loader')
+					// spinner.show()
+				function display() {
+					if (sessionStorage.getItem('hospital') == "H1") {
+					var ifrm = document.createElement("iframe");
+					ifrm.setAttribute("src", "D_H6.html");
+					ifrm.style.width = "640px";
+					ifrm.style.height = "480px";
+					document.body.appendChild(ifrm);
+					ifrm.style.marginLeft = "630px";
+					ifrm.style.marginTop = "-200px";
+					ifrm.style.border = "none";
+
+				}
+				else if (sessionStorage.getItem('hospital') == "H2") {
+					console.log("object")
+					var ifrm = document.createElement("iframe");
+					ifrm.setAttribute("src", "D_H2.html");
+					ifrm.style.width = "640px";
+					ifrm.style.height = "480px";
+					document.body.appendChild(ifrm);
+					ifrm.style.marginLeft = "630px";
+					ifrm.style.marginTop = "-190px";
+					ifrm.style.border = "none";
+
+				}
+				else if (sessionStorage.getItem('hospital') == "H3") {
+					var ifrm = document.createElement("iframe");
+					ifrm.setAttribute("src", "D_H3.html");
+					ifrm.style.width = "640px";
+					ifrm.style.height = "480px";
+					document.body.appendChild(ifrm);
+					ifrm.style.marginLeft = "630px";
+					ifrm.style.marginTop = "-190px";
+					ifrm.style.border = "none";
+				}
+				else if (sessionStorage.getItem('hospital') == "H4") {
+					var ifrm = document.createElement("iframe");
+					ifrm.setAttribute("src", "D_H4.html");
+					ifrm.style.width = "640px";
+					ifrm.style.height = "480px";
+					document.body.appendChild(ifrm);
+					ifrm.style.marginLeft = "630px";
+					ifrm.style.marginTop = "-190px";
+					ifrm.style.border = "none";
+				}
+				else if (sessionStorage.getItem('hospital') == "H5") {
+					var ifrm = document.createElement("iframe");
+					ifrm.setAttribute("src", "D_H5.html");
+					ifrm.style.width = "640px";
+					ifrm.style.height = "480px";
+					document.body.appendChild(ifrm);
+					ifrm.style.marginLeft = "630px";
+					ifrm.style.marginTop = "-190px";
+					ifrm.style.border = "none";
+				}
+				function load() {
+					spinner.hide()
+				}
+				setTimeout(load, 2200)	
+				}
+				
+			</script> -->
+		</div>
+	</body>
+
+</html>

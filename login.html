@@ -1,0 +1,77 @@
+<html>
+
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href="login.css">
+	<script src="login.js"></script>
+	
+</head>
+	<script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+<body>
+
+	<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-analytics.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
+    <script>
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyC8u4DXv-tnpGL4HIR4ImrFqvrS8hiKQ8Q",
+            authDomain: "javascript-2525.firebaseapp.com",
+            projectId: "javascript-2525",
+            storageBucket: "javascript-2525.appspot.com",
+            messagingSenderId: "308544058300",
+            appId: "1:308544058300:web:f1bd18ae63d13c99bdf1b9",
+            measurementId: "G-ZB18Y9E6E8"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+    </script>
+	<div id="loader"></div>
+
+	<div class="container">
+		<div class="header">
+			</br>
+			<h1>Login</h1>
+		</div>
+		<div class="main">
+
+			<form>
+
+				<p>
+					<label style="font-family:Comic Sans MS; font-size:13px;">Select Your Role:</label>
+					<select id="item1" name="Selection" size="1">
+						<option></option>
+						<option value="doctor">Hospital</option>
+						<option value="patient">Patient</option>
+						<!-- <option value="blood bank manager">Blood Bank Manager</option> -->
+
+					</select>
+				</p>
+
+				<input style="margin-bottom:20px;" id="U_name" type="email" name="username" placeholder="Email"
+					required autocomplete="off">
+				</br>
+				<input style="margin-bottom:20px;" id="pass" type="password" name="password"
+					placeholder="Password(min. 6 characters)" required autocomplete="off" min="6" max="15">
+				</br>
+
+
+				<a onclick="message()" href="#" media="all" target="_self"
+					style="margin-left:85px; background-color:white; height:40px; width:75px; display:block; border-radius:20px;"><span
+						style="margin-left:17px;">Login</span></a>
+
+				</br>
+				<span style="margin-right:-6px;">Not a member?</span><a href="Sign Up.html" media="all"
+					target="_self">Sign up</a>
+			</form>
+		</div>
+
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<html>
+<head>
+</head>
+<body>
+<input id="text_a" type="text;" />
+<p id="answer"></p>
+<button onclick="myFunction()">Check</button>
+
+<script>
+function myFunction()
+{
+var a=document.getElementById("text_a").value;
+
+if (a=="hello")
+  {
+document.getElementById("answer").innerHTML="Correct!";
+  }
+else
+  {
+document.getElementById("answer").innerHTML="Oops!";
+document.location.href = "login.html";
+  }
+}
+</script>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<title>Blood Status</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="H.css">
+<!-- lok smarpan -->
+
+<body>
+  
+  <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
+  
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-analytics.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
+    <script>
+    
+      var firebaseConfig = {
+      apiKey: "AIzaSyC8u4DXv-tnpGL4HIR4ImrFqvrS8hiKQ8Q",
+      authDomain: "javascript-2525.firebaseapp.com",
+      projectId: "javascript-2525",
+      storageBucket: "javascript-2525.appspot.com",
+      messagingSenderId: "308544058300",
+      appId: "1:308544058300:web:f1bd18ae63d13c99bdf1b9",
+      measurementId: "G-ZB18Y9E6E8"
+      };
+    
+      firebase.initializeApp(firebaseConfig);
+    </script>
+  <div>
+    <h3 style="margin-left:30px;" id="hname"></h3>
+  </div>
+  <div class="w3-container">
+    <p style="margin-top:20px;">O-:</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-green w3-round-xlarge unique" id="O-"></div>
+    </div>
+  </div>
+  
+  <div class="w3-container">
+    <p style="margin-top:20px;">AB+ :</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-blue w3-round-xlarge unique" id="AB+"></div>
+    </div>
+  </div>
+  
+  <div class="w3-container">
+    <p style="margin-top:20px;">B+ :</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-green w3-round-xlarge unique" id="B+"></div>
+    </div>
+  </div>
+  
+  <div class="w3-container">
+    <p style="margin-top:20px;">B- :</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-blue w3-round-xlarge unique" id="B-"></div>
+    </div>
+  </div>
+  
+  <div class="w3-container">
+    <p style="margin-top:20px;">A+ :</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-green w3-round-xlarge unique" id="A+"></div>
+    </div>
+  </div>
+  
+  <div class="w3-container">
+    <p style="margin-top:20px;">O+ :</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-blue w3-round-xlarge unique" id="O+" ></div>
+    </div>
+  </div>
+  
+  <div class="w3-container">
+    <p style="margin-top:20px;">AB- :</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-green w3-round-xlarge unique" id="AB-" ></div>
+    </div>
+  </div>
+  
+  <div class="w3-container">
+    <p style="margin-top:20px;">A- :</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-blue w3-round-xlarge unique" id="A-" ></div>
+    </div>
+  </div>
+  
+  <script>
+    var hname=document.getElementById('hname')
+    var a = document.getElementById('A+')
+    var b = document.getElementById('B+')
+    var c = document.getElementById('AB+')
+    var d = document.getElementById('O+')
+    var e = document.getElementById('A-')
+    var f = document.getElementById('B-')
+    var g = document.getElementById('AB-')
+    var h = document.getElementById('O-')
+    firebase.firestore().collection("doctors").doc("GBBhne6WRWMtcLJT1bDh4iXPLRz1").get().then((doc)=>{
+    // console.log(doc.data().Blood['A+']);
+    hname.innerHTML=doc.data().Hospital
+    a.style.width=`${doc.data().Blood['A+']}%`
+    a.innerHTML=`${doc.data().Blood['A+']} Bottels`
+    b.style.width=`${doc.data().Blood['B+']}%`
+    b.innerHTML=`${doc.data().Blood['B+']} Bottels`
+    c.style.width=`${doc.data().Blood['AB+']}%`
+    c.innerHTML=`${doc.data().Blood['AB+']} Bottels`
+    d.style.width=`${doc.data().Blood['O+']}%`
+    d.innerHTML=`${doc.data().Blood['O+']} Bottels`
+    e.style.width=`${doc.data().Blood['A-']}%`
+    e.innerHTML=`${doc.data().Blood['A-']} Bottels`
+    f.style.width=`${doc.data().Blood['B-']}%`
+    f.innerHTML=`${doc.data().Blood['B-']} Bottels`
+    g.style.width=`${doc.data().Blood['AB-']}%`
+    g.innerHTML=`${doc.data().Blood['AB-']} Bottels`
+    h.style.width=`${doc.data().Blood['O-']}%`
+    h.innerHTML=`${doc.data().Blood['O-']} Bottels`
+    
+    })
+  </script>
+  
+  </body>
+  
+</html>

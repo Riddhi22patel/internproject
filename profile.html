@@ -1,0 +1,157 @@
+<html>
+<head>
+	<title>Profile</title>
+	<link rel="stylesheet" href="profile.css">
+	<script src="https://kit.fontawesome.com/ea99c0e3b8.js" crossorigin="anonymous"></script>
+	<style>
+		#loader {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+        background: rgba(0, 0, 0,0.75) url(loading.gif) no-repeat center center;          
+		z-index: 10000;
+}
+
+	</style>
+</head>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<body>
+	
+	<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-analytics.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-storage.js"></script>
+
+    <script>
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyC8u4DXv-tnpGL4HIR4ImrFqvrS8hiKQ8Q",
+            authDomain: "javascript-2525.firebaseapp.com",
+            projectId: "javascript-2525",
+            storageBucket: "javascript-2525.appspot.com",
+            messagingSenderId: "308544058300",
+            appId: "1:308544058300:web:f1bd18ae63d13c99bdf1b9",
+            measurementId: "G-ZB18Y9E6E8"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+    </script>
+<div id="loader"></div>	
+	<div class="login-div"></div>
+	<div class="main">
+		<img src="avatar.png" height="150px" width="150px" id="img">
+	</div>
+	
+		<div style="margin-top:100px;">
+			<div style="margin-left: 550px; position: absolute; margin-top: -400px;">
+				<progress id="uploader" value="0" max="100">0%</progress>
+				<input type="file" id="fileButton" value="upload" />
+			</div>		
+		    
+		<div>
+		<i class="fas fa-user-alt" style="margin-left:550px; margin-top:-370px;"><span id="name" style="margin-left:10px;"></span></i>
+		</div>
+		<div>
+			<i class="fas fa-venus-mars" style="margin-left:550px; margin-top:-335px;"><span id="gender" style="margin-left:10px;"></span></i>
+		</div> 
+		<div>
+		<i class="fas fa-phone-alt" style="margin-left:550px; margin-top:-300px;" ><span id="phone" style="margin-left:10px;"></span></i>
+		</div>
+		<div>
+		<i class="fas fa-envelope" style="margin-left:550px; margin-top:-270px;" ><span id="email" style="margin-left:10px;"></span></i>
+		</div>
+		<i class="fas fa-home" style="margin-left:550px; margin-top:-240px;"><span id="address" style="margin-left:10px;"></span></i>
+		<div>
+		<i class="fas fa-tint" style="margin-left:550px; margin-top:-210px;"><span id="blood" style="margin-left:10px;"></span></i>
+		</div>
+		<div>
+		<i class="fas fa-long-arrow-alt-left" style="margin-left:650px; margin-top:-187px;"></i>
+		</div>
+	</div>
+	<script>
+		
+		var uploader = document.getElementById('uploader');
+        var fileButton = document.getElementById('fileButton');
+        console.log(fileButton);
+        fileButton.addEventListener('change', function (e) {
+            var file = e.target.files[0];
+            console.log(file);
+            var storageRef = firebase.storage().ref('images/' + file.name);
+            var task = storageRef.put(file);
+            task.on('state_changed', function progress(snapshot) {
+                var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                uploader.value = percentage;
+
+            }, function error(err) {
+
+
+            }, function complete() {
+                task.snapshot.ref.getDownloadURL().then(
+                function(downloadURL) {
+                console.log('File available at', downloadURL);
+				document.getElementById('img').setAttribute("src",downloadURL)
+  
+               console.log(downloadURL);
+               firebase.firestore().collection("patients").doc(localStorage.getItem('uid')).update({
+                   imageUrl:downloadURL
+               })
+			   
+            });
+              
+            });
+
+        })
+		window.onload=fun()
+		function fun() {
+			firebase.firestore().collection("patients").doc(localStorage.getItem('uid')).get().then((doc)=>{
+				if(doc.data().imageUrl==""){
+					document.getElementById('img').setAttribute("src","avatar.png")
+				}
+				   else{
+					document.getElementById('img').setAttribute("src",doc.data().imageUrl)
+				   }
+			   })
+		}
+	</script>
+<script>
+	function Read() {
+		var spinner=$("#loader")
+		spinner.show()
+    firebase.firestore().collection("patients").doc(localStorage.getItem('uid')).get().then((doc)=>{
+        
+        var ele1=document.getElementById("name")
+        console.log(ele1);
+        ele1.innerText=`${doc.data().Firstname} ${doc.data().Lastname}`
+		var ele6=document.getElementById("gender")
+        ele6.innerText=doc.data().Gender
+        var ele2=document.getElementById("phone")
+        ele2.innerText=doc.data().Phone
+        var ele3=document.getElementById("email")
+        ele3.innerText=doc.data().Email
+		var ele4=document.getElementById("address")
+        ele4.innerText=doc.data().Address
+		var ele5=document.getElementById("blood")
+        ele5.innerText=doc.data().BloodGroup
+		var spinner=$("#loader")
+		spinner.hide()
+    })
+	
+
+}
+Read()
+</script>
+	<form action="home1.html">
+	
+	<button><b>Back</b></button></form>
+</body>
+<script src="signUp.js"></script>
+</html>

@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>Sign In</title>
+<link rel="stylesheet" href="Sign Up.css">
+</head>
+<body>
+	<script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+	<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-analytics.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
+    <script>
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyC8u4DXv-tnpGL4HIR4ImrFqvrS8hiKQ8Q",
+            authDomain: "javascript-2525.firebaseapp.com",
+            projectId: "javascript-2525",
+            storageBucket: "javascript-2525.appspot.com",
+            messagingSenderId: "308544058300",
+            appId: "1:308544058300:web:f1bd18ae63d13c99bdf1b9",
+            measurementId: "G-ZB18Y9E6E8"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+    </script>
+	<div id="loader"></div>
+	<div class="container">
+		<div class="header">
+		</br>
+		<h1>Sign Up</h1>
+		</div>
+		<div class="main">
+		
+			<form>
+				
+				<p>
+				<label style="font-family:Comic Sans MS; font-size:13px;">Select Your Role:</label>
+				<select id="item1" name="Selection" size="1">
+					<option></option>
+					<option value="patient" >Patient</option>
+				</select>
+				</p>		
+				
+				<input style="margin-bottom:20px;" id="Fname" type="text" name="firstname" placeholder="Firstname" required autocomplete="off">
+				</br>
+				<input style="margin-bottom:20px;" id="Lname" type="text" name="lastname" placeholder="Lastname" required autocomplete="off">
+				</br>
+				<input style="margin-bottom:20px;" id="Eadd" type="email" name="email address" placeholder="Email address" required autocomplete="off">
+				</br>
+				<input style="margin-bottom:20px;" id="Monum"type="tel" name="contact no." placeholder="Contact number" required autocomplete="off">
+				</br>
+				<!-- <input style="margin-bottom:20px;" id="blood"type="text" name="bood group" placeholder="Blood Group" required autocomplete="off"> -->
+				<label style="font-family:Comic Sans MS; font-size:13px;">Blood Group :</label>
+					<select id="blood" name="Selection1" size="1" required autocomplete="off">
+						<option></option>
+						<option value="A+">A+</option>
+						<option value="B+">B+</option>
+						<option value="O+">O+</option>
+						<option value="AB+">AB+</option>
+						<option value="A-">A-</option>
+						<option value="B-">B-</option>
+						<option value="O-">O-</option>
+						<option value="AB-">AB-</option>
+					</select>
+				</br>
+				<br>
+				<label style="font-family:Comic Sans MS; font-size:13px;">Gender:</label>
+					<select id="gen" name="Selection" size="1" required autocomplete="off">
+						<option></option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+						<option value="Other">Other</option>
+					</select>
+				<br>
+				<br>
+				<input style="margin-bottom:20px;" id="address"type="text" name="Address" placeholder="Address" required autocomplete="off">
+				</br>
+				<input style="margin-bottom:20px;" id="pass" type="password" name="password" placeholder="Password(min. 6 characters)" required autocomplete="off" min="6" max="15">
+				</br>
+				
+				<a onclick="message()" href="#"><span>Sign Up</span></a>
+			</form>
+		</div>
+			
+	</div>
+</body>
+<script src="signUp.js"></script>
+</html>

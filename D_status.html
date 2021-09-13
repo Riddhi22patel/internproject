@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Blood Status</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="H.css">
+  <style>
+    body{
+      background-image: url(bg13.jpg);
+				background-repeat: no-repeat;
+				background-size: cover;
+    }
+    .change {
+      height: 500px;
+      width: 500px;
+      margin-left: 15px;
+    }
+
+    .change input {
+
+      background-color: transparent;
+      border: none;
+      outline: none;
+      border-bottom: 2px solid black;
+      /* border-width:10px ; */
+    }
+
+    #loader {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.75) url(loading.gif) no-repeat center center;
+      z-index: 10000;
+    }
+  </style>
+</head>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-storage.js"></script>
+
+<script>
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyC8u4DXv-tnpGL4HIR4ImrFqvrS8hiKQ8Q",
+    authDomain: "javascript-2525.firebaseapp.com",
+    projectId: "javascript-2525",
+    storageBucket: "javascript-2525.appspot.com",
+    messagingSenderId: "308544058300",
+    appId: "1:308544058300:web:f1bd18ae63d13c99bdf1b9",
+    measurementId: "G-ZB18Y9E6E8"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<div id="loader"></div>	
+
+<body>
+
+  <div>
+    <h3 style="margin-left:30px;" id="hname"></h3>
+  </div>
+  <div class="w3-container">
+    <p style="margin-top:20px;">O-:</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-green w3-round-xlarge unique" id="O-"></div>
+    </div>
+  </div>
+
+  <div class="w3-container">
+    <p style="margin-top:20px;">AB+ :</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-blue w3-round-xlarge unique" id="AB+"></div>
+    </div>
+  </div>
+
+  <div class="w3-container">
+    <p style="margin-top:20px;">B+ :</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-green w3-round-xlarge unique" id="B+"></div>
+    </div>
+  </div>
+
+  <div class="w3-container">
+    <p style="margin-top:20px;">B- :</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-blue w3-round-xlarge unique" id="B-"></div>
+    </div>
+  </div>
+
+  <div class="w3-container">
+    <p style="margin-top:20px;">A+ :</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-green w3-round-xlarge unique" id="A+"></div>
+    </div>
+  </div>
+
+  <div class="w3-container">
+    <p style="margin-top:20px;">O+ :</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-blue w3-round-xlarge unique" id="O+"></div>
+    </div>
+  </div>
+
+  <div class="w3-container">
+    <p style="margin-top:20px;">AB- :</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-green w3-round-xlarge unique" id="AB-"></div>
+    </div>
+  </div>
+
+  <div class="w3-container">
+    <p style="margin-top:20px;">A- :</p>
+    <div class="w3-light-grey w3-round-xlarge" style="margin-left:50px; margin-top:-35px;">
+      <div class="w3-container w3-blue w3-round-xlarge unique" id="A-"></div>
+    </div>
+  </div>
+
+  <script>
+    var spinner=$("#loader")
+	  spinner.show()
+    var hname = document.getElementById('hname')
+    var a = document.getElementById('A+')
+    var b = document.getElementById('B+')
+    var c = document.getElementById('AB+')
+    var d = document.getElementById('O+')
+    var e = document.getElementById('A-')
+    var f = document.getElementById('B-')
+    var g = document.getElementById('AB-')
+    var h = document.getElementById('O-')
+    firebase.firestore().collection("doctors").doc(localStorage.getItem('uid')).get().then((doc) => {
+      // console.log(doc.data().Blood['A+']);
+      hname.innerHTML = doc.data().Hospital
+      a.style.width = `${doc.data().Blood['A+']}%`
+      a.innerHTML = `${doc.data().Blood['A+']} Bottels`
+      b.style.width = `${doc.data().Blood['B+']}%`
+      b.innerHTML = `${doc.data().Blood['B+']} Bottels`
+      c.style.width = `${doc.data().Blood['AB+']}%`
+      c.innerHTML = `${doc.data().Blood['AB+']} Bottels`
+      d.style.width = `${doc.data().Blood['O+']}%`
+      d.innerHTML = `${doc.data().Blood['O+']} Bottels`
+      e.style.width = `${doc.data().Blood['A-']}%`
+      e.innerHTML = `${doc.data().Blood['A-']} Bottels`
+      f.style.width = `${doc.data().Blood['B-']}%`
+      f.innerHTML = `${doc.data().Blood['B-']} Bottels`
+      g.style.width = `${doc.data().Blood['AB-']}%`
+      g.innerHTML = `${doc.data().Blood['AB-']} Bottels`
+      h.style.width = `${doc.data().Blood['O-']}%`
+      h.innerHTML = `${doc.data().Blood['O-']} Bottels`
+      spinner.hide()
+    })
+  </script>
+  <script>
+    function status() {
+      var blood = document.getElementById('item1').value
+      var bottel = document.getElementById('num').value
+      console.log(blood);
+      console.log(typeof (parseInt(bottel)));
+      firebase.firestore().collection("doctors").doc(localStorage.getItem('uid')).get().then((doc) => {
+        var array = Object.entries(doc.data().Blood);
+        for (j = 0; j < array.length; j++) {
+          if (array[j][0] == blood) {
+            array[j][1] = array[j][1] + parseInt(bottel)
+          }
+        }
+        // key=array[j][0]
+        firebase.firestore().collection("doctors").doc(localStorage.getItem('uid')).update({
+          Blood: {
+            [array[0][0]]: parseInt(array[0][1]),
+            [array[1][0]]: parseInt(array[1][1]),
+            [array[2][0]]: parseInt(array[2][1]),
+            [array[3][0]]: parseInt(array[3][1]),
+            [array[4][0]]: parseInt(array[4][1]),
+            [array[5][0]]: parseInt(array[5][1]),
+            [array[6][0]]: parseInt(array[6][1]),
+            [array[7][0]]: parseInt(array[7][1]),
+
+          }
+        })
+
+      })
+
+      function wait() {
+        location.reload();
+      }
+      setTimeout(wait, 2000)
+
+    }
+
+    function status1() {
+      var blood = document.getElementById('item1').value
+      var bottel = document.getElementById('num').value
+      console.log(blood);
+      console.log(typeof (parseInt(bottel)));
+      firebase.firestore().collection("doctors").doc(localStorage.getItem('uid')).get().then((doc) => {
+        var array = Object.entries(doc.data().Blood);
+        for (j = 0; j < array.length; j++) {
+          if (array[j][0] == blood) {
+            array[j][1] = array[j][1] - parseInt(bottel)
+          }
+        }
+        // key=array[j][0]
+        firebase.firestore().collection("doctors").doc(localStorage.getItem('uid')).update({
+          Blood: {
+            [array[0][0]]: parseInt(array[0][1]),
+            [array[1][0]]: parseInt(array[1][1]),
+            [array[2][0]]: parseInt(array[2][1]),
+            [array[3][0]]: parseInt(array[3][1]),
+            [array[4][0]]: parseInt(array[4][1]),
+            [array[5][0]]: parseInt(array[5][1]),
+            [array[6][0]]: parseInt(array[6][1]),
+            [array[7][0]]: parseInt(array[7][1]),
+
+          }
+        })
+
+      })
+
+      function wait() {
+        location.reload();
+      }
+      setTimeout(wait, 2000)
+    }
+  </script>
+  <br>
+  <!-- <div style="margin-left: 20px;">
+    <h3>Update Status Here...</h3>
+    <br>
+    <label>Blood Group :</label>
+    <select id="item1" name="Selection1" size="1">
+      <option></option>
+      <option value="A+">A+</option>
+      <option value="B+">B+</option>
+      <option value="O+">O+</option>
+      <option value="AB+">AB+</option>
+      <option value="A-">A-</option>
+      <option value="B-">B-</option>
+      <option value="O-">O-</option>
+      <option value="AB-">AB-</option>
+    </select><br><br>
+    <input type="number" placeholder="Enter Number of Bottels" id="num" style="border-radius: 5px;"><br><br>
+    <button style="margin-left: 0px;" type="button" onclick="status()">ADD</button>
+    <button style="margin-left: 0px;" type="button" onclick="status1()">Remove</button>
+
+  </div> -->
+</body>
+<!-- <script src="changeStatus.js"></script> -->
+
+</html>

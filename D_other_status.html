@@ -1,0 +1,131 @@
+<html>
+<head>
+	<title>Other Hospital</title>
+	<style>
+		body{
+			background-image: url(bg13.jpg);
+				background-repeat: no-repeat;
+				background-size: cover;
+		}
+#loader {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+        background: rgba(0, 0, 0,0.75) url(loading.gif) no-repeat center center;          
+		z-index: 10000;
+}
+
+	</style>
+</head>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<body style="background-color:rgb(227, 30, 37);">
+	<!-- <div style="position:absolute;">
+	<iframe src="D_H2.html" style="margin-left:50px; margin-top:20px; height:500px; width:500px; border:none;"></iframe>
+	<iframe src="D_H3.html" style="margin-left:650px; margin-top:-500px; height:500px; width:500px; border:none;"></iframe>
+	<br>
+
+	<iframe src="D_H5.html" style="margin-left:650px; margin-top:-10px; height:500px; width:500px; border:none;"></iframe>
+	<iframe src="D_H4.html" style="margin-left:50px; margin-top:-500px; height:500px; width:500px; border:none;"></iframe>
+
+	</div> -->
+	<div id="loader"></div>	
+	<script>
+			var spinner=$("#loader")
+			spinner.show()
+			var div=document.createElement('div')
+			div.style.position="absolute;"
+			var iframe1=document.createElement('iframe')
+			iframe1.src=""
+			iframe1.style.marginLeft="50px"
+			iframe1.style.marginTop="20px"
+			iframe1.width="500px"
+			iframe1.height="500px"
+			iframe1.style.border="none"
+			div.appendChild(iframe1)
+
+			var iframe2=document.createElement('iframe')
+			iframe2.src=""
+			iframe2.style.marginLeft="650px"
+			iframe2.style.marginTop="-500px"
+			iframe2.width="500px"
+			iframe2.height="500px"
+			iframe2.style.border="none"
+			div.appendChild(iframe2)
+
+			var br=document.createElement('br')
+			div.appendChild(br)
+
+			var iframe3=document.createElement('iframe')
+			iframe3.src=""
+			iframe3.style.marginLeft="650px"
+			iframe3.style.marginTop="-10px"
+			iframe3.width="500px"
+			iframe3.height="500px"
+			iframe3.style.border="none"
+			div.appendChild(iframe3)
+
+			var iframe4=document.createElement('iframe')
+			iframe4.src=""
+			iframe4.style.marginLeft="50px"
+			iframe4.style.marginTop="-500px"
+			iframe4.width="500px"
+			iframe4.height="500px"
+			iframe4.style.border="none"
+			div.appendChild(iframe4)
+			document.body.appendChild(div)
+			
+			if(localStorage.getItem('uid')=="zZ7X0aQnOXVJ91B5PNsMB0pBQzW2")
+			{
+				
+				iframe1.src="D_H2.html"
+				iframe2.src="D_H3.html"
+				iframe3.src="D_H5.html"
+				iframe4.src="D_H4.html"
+				
+			}
+			else if(localStorage.getItem('uid')=="mpqnEoPJB1eQTFkLzPL8jwT6Gl03")
+			{
+				iframe1.src="D_H2.html"
+				iframe2.src="D_H3.html"
+				iframe3.src="D_H5.html"
+				iframe4.src="D_H6.html"
+
+			}
+			else if(localStorage.getItem('uid')=="cSaCUkD8YkcqQZDHL2aQqKwoUDm1")
+			{
+				iframe1.src="D_H2.html"
+				iframe2.src="D_H3.html"
+				iframe3.src="D_H4.html"
+				iframe4.src="D_H6.html"
+
+			}
+			else if(localStorage.getItem('uid')=="GBBhne6WRWMtcLJT1bDh4iXPLRz1")
+			{
+				iframe1.src="D_H3.html"
+				iframe2.src="D_H4.html"
+				iframe3.src="D_H5.html"
+				iframe4.src="D_H6.html"
+
+			}
+			else if(localStorage.getItem('uid')=="9fkDFWJVpEO3hR01GiJBTJFWdPw1")
+			{
+				iframe1.src="D_H2.html"
+				iframe2.src="D_H4.html"
+				iframe3.src="D_H5.html"
+				iframe4.src="D_H6.html"
+
+			}
+			function wait() {
+				spinner.hide()
+			}
+			setTimeout(wait,2500)
+	</script>
+	
+</body>
+</html>

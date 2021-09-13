@@ -1,0 +1,87 @@
+body{background-image:url(bg13.jpg);
+	background-size:cover;
+	background-repeat:no-repeat;}
+
+.container{position:relative;
+			top:50%;
+			margin-left:50%;
+			transform:translate(-50%,-50%);
+			width:400px;
+			height:570px;
+			border-radius:25px;
+			background-color:rgb(241, 113, 115,0.3);
+			}
+
+			#loader {
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				width: 100%;
+				background: rgba(0, 0, 0,0.75) url(loading.gif) no-repeat center center;          
+				z-index: 10000;
+			}
+
+.header{text-align:center;
+	color:black;
+	font-family:"Comic Sans MS";	
+		}
+
+.main{margin-left:20px;
+	top:50px;
+	}
+
+.main select{border:none;
+			background-color:transparent;
+			color:black;
+			}
+
+.main select option{background-color:rgb(241, 113, 115);
+					color:black}
+				
+::placeholder{color:black;
+				font-family:"Comic Sans MS";
+				letter-spacing:0.2px;}
+.main button{text-align:center;
+		width:100px;
+		height:40px;
+		letter-spacing:1px;
+		border-radius:20px;
+		transition-property:all;
+		transition-duration:0.5s;
+					
+		}
+.main input,button{border:none;
+					height:30px;
+					
+					}
+.main input{border:none;
+			color:black;
+					height:30px;
+					width:200px;
+					background-color:transparent;
+					border-bottom:2px solid black;
+					outline:none;
+					transition-property:all;
+					transition-duration:0.5s;
+					
+					}
+.main input:hover{border-bottom:2px solid white;
+}
+
+.main a{color:black;
+		text-decoration:none;
+		background-color:white;
+		display:block;
+		height:40px;
+		width:80px;
+		margin-left:130px;
+		border-radius:20px;}
+.main a span{display:flex;
+			padding-top:10px;
+			margin-left:15px;
+			}
+.main a:hover{background-color:black;
+			color:white;}

@@ -1,0 +1,144 @@
+<html>
+
+<head>
+	<title>Contact Us</title>
+	<link rel="stylesheet" href="contactUs.css">
+	<style>
+		#loader {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: 100%;
+			background: rgba(0, 0, 0, 0.75) url(loading.gif) no-repeat center center;
+			z-index: 10000;
+		}
+	</style>
+</head>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<body>
+	<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-analytics.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
+	<script>
+
+		var firebaseConfig = {
+			apiKey: "AIzaSyC8u4DXv-tnpGL4HIR4ImrFqvrS8hiKQ8Q",
+			authDomain: "javascript-2525.firebaseapp.com",
+			projectId: "javascript-2525",
+			storageBucket: "javascript-2525.appspot.com",
+			messagingSenderId: "308544058300",
+			appId: "1:308544058300:web:f1bd18ae63d13c99bdf1b9",
+			measurementId: "G-ZB18Y9E6E8"
+		};
+
+		firebase.initializeApp(firebaseConfig);
+	</script>
+	<div id="loader"></div>
+	<script>
+		var i
+		function contact() {
+			var spinner = $('#loader')
+			spinner.show()
+			var ele1 = document.getElementById('name').value
+			var ele2 = document.getElementById('email').value
+			var ele3 = document.getElementById('date').value
+			var ele4 = document.getElementById('item1').value
+			// var ele5 = document.getElementById('item2').value
+			var ele7 = document.getElementById('phone').value
+
+			if (document.getElementById('d').checked) {
+				var ele6 = "Donate Blood"
+			}
+			else {
+				var ele6 = "Receive Blood"
+			}
+
+            firebase.firestore().collection('doctors/').doc(localStorage.getItem('uid')).get().then((doc)=>{
+                var ele5=doc.data().Hospital
+            
+			function wait() {
+				firebase.firestore().collection('patients/').doc("dantlsvpf59pkXbY1FiW").update({
+				contact:firebase.firestore.FieldValue.arrayUnion({
+					Name: ele1,
+					Email: ele2,
+					Phone:ele7,
+			 		Date: ele3,
+					BloodGroup: ele4,
+					Hospital: ele5,
+					Status: ele6,
+					Status_History:"pending",
+					uid:"dantlsvpf59pkXbY1FiW"
+				})
+				})
+			}
+
+			if (ele1 != "" && ele2 != "" && ele3 != "" && ele4 != "" && ele5 != "" && ele6 != "" && ele7!="") {
+				wait()
+				setTimeout(load, 4000)
+			}
+			else {
+				spinner.hide(100, function () {
+					alert("please fill up all details first....")
+
+				})
+			}
+			function load() {
+				spinner.hide()
+				window.location.href="D_home.html"
+			}
+
+        })
+		}
+    
+	</script>
+	<div class="login-div"></div>
+	<h1></h1>
+	<form id="form1">
+		<div class="main">
+			<h2>Contact US</h2>
+			<input style="margin-bottom:20px;" id="name" type="text" name="Name" required placeholder="Name"
+				autocomplete="off"></input><br>
+			<input style="margin-bottom:20px;" type="Email" id="email" name="Email" required placeholder="Email"
+				autocomplete="off"></input><br>
+				<input style="margin-bottom:20px;" type="tel" id="phone" name="phone" required placeholder="Phone Number"
+				autocomplete="off"></input><br>
+			<input style="margin-bottom:20px;" type="Date" id="date" name="Email" required placeholder="Date"
+				autocomplete="off"></input>
+			<br>
+			<label>Blood Group :</label>
+			<select id="item1" name="Selection1" size="1">
+				<option></option>
+				<option value="A+">A+</option>
+				<option value="B+">B+</option>
+				<option value="O+">O+</option>
+				<option value="AB+">AB+</option>
+				<option value="A-">A-</option>
+				<option value="B-">B-</option>
+				<option value="O-">O-</option>
+				<option value="AB-">AB-</option>
+			</select>
+			
+			<br>
+			<label>Donate Blood : <input type="radio" name="select" style="margin-left:-80px;" id="d"></label>
+			<label style="margin-left:-80px;">Receive Blood : <input type="radio" name="select" id="b"
+					style="margin-left:-80px;"></label>
+			<br>
+			<br>
+
+			<!-- <button type="submit" form="form1" value="submit" onclick="contact()">Submit</button> -->
+			<a href="#" onclick="contact()" id="c"
+				style="color: black; background-color: white; display: block; height:30px; width: 80px; text-align: center; padding-top: 10px; text-decoration: none; border-radius: 20px;">Submit</a>
+		</div>
+	</form>
+	
+</body>
+
+</html>
